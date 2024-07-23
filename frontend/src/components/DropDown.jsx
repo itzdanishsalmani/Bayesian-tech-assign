@@ -1,72 +1,58 @@
 import { useState } from "react"
 
 export function DropDownOrg() {
-    const [isOpen,setOpen] = useState(false)
+    const [origin,setOrigin] = useState("SYN")
 
     return <div>
-        <button className="border w-48 border-white " onClick={()=>{
-            setOpen(!isOpen)
+                    Origin
+        <select value={origin} className="border w-48 border-white " onChange={(e)=>{
+setOrigin(e.target.value)
         }} >
-            Origin
-        </button>
-        { isOpen && (
+                <option value="JFK">JFK</option>
+                <option value="DEL">DEL</option>
+                <option value="SYD">SYD</option>
+                <option value="BOM">BOM</option>
+                <option value="BNE">BNE</option>
+                <option value="BLR">BLR</option>
 
-        <div className="bg-red-500 cursor-pointer">
-            <ul>
-                <li className="border">JFK</li>
-                <li className="border">DEL</li>
-                <li className="border">SYD</li>
-                <li className="border">BOM</li>
-                <li className="border">BNE</li>
-                <li className="border">BLR</li>
-            </ul>
-        </div>
-            ) }
+        </select>
 
     </div>
 }
 
 export function DropDownDest() {
-    const [isOpen,setOpen] = useState(false)
+    const [destination,setDestination] = useState("JFK")
 
     return <div>
-        <button className="border w-48 border-white" onClick={()=>{
-            setOpen(!isOpen)
+                    Destination
+        <select value={destination} className="border w-48 border-white" onChange={(e)=>{
+           setDestination( e.target.value)
         }} >
-            Destination
-        </button>
-        { isOpen && (
-
-        <div className="bg-red-500 cursor-pointer">
-            <ul>
-                <li className="border">JFK</li>
-                <li className="border">DEL</li>
-                <li className="border">SYD</li>
-                <li className="border">LHR</li>
-                <li className="border">CDG</li>
-                <li className="border">DOH</li>
-                <li className="border">SIN</li>
-            </ul>
-        </div>
-            ) }
+                <option value="JFK" >JFK</option>
+                <option value="DEL" >DEL</option>
+                <option value="SYD" >SYD</option>
+                <option value="LHR" >LHR</option>
+                <option value="CDG" >CDG</option>
+                <option value="DOH" >DOH</option>
+                <option value="SIN" >SIN</option>
+        </select>
     </div>
 }
 
 export function Cabin({fn}) {
+    const [cabin,setCabin] = useState("Economy");
 
     return (
-        <div className=" flex flex-col w-48">
-            <button>Cabin selection</button>
-            <input type="text" placeholder="type" className="border"/>
-            <div> 
-                <ul>
-                    <li>Economy</li>
-                    <li>Business</li>
-                    <li>First</li>
-                </ul>
-            </div>
+        <div className="flex flex-col w-48">
+            Cabin selection<select className="border"  value={cabin} onChange={(e)=>{
+                setCabin(e.target.value)
+            }} >
+                    <option value="Economy"  >Economy</option   >
+                    <option value="Business"  >Business</option  >
+                    <option value="First"  >First</option >
+            </select>
         
-                <button className="bg-blue-500 text-white p-2 rounded-lg" onClick={fn}>Search</button>
+                <button className="bg-blue-500 mt-8 w-20 text-white p-2 rounded-lg" onClick={fn}>Search</button>
                 </div>
     )
 }
