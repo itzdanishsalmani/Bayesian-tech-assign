@@ -2,13 +2,20 @@ const express = require ("express");
 const cors = require ("cors");
 
 const app = express()
+app.use(express.json())
 app.use(cors())
 
-app.get("/", (req,res)=>{
+app.post("/", (req,res)=>{
+
+    const origin1 = req.body.origin;
+    const destination1 = req.body.destination;
+    const cabin1 = req.body.cabin;
+
+    console.log(origin1,destination1,cabin1)
 
     const jsonData = {
-        origin: 'SYD',
-        destination: 'JFK',
+        origin: origin1,
+        destination: destination1,
         partnerPrograms: [
             'Air Canada',
             'United Airlines',
@@ -55,9 +62,13 @@ app.get("/", (req,res)=>{
         ]
     };
 
-    res.json(jsonData,response);
-});
+    const combinedResponse = {
+        jsonData,
+        response
+    };
 
+    res.json(combinedResponse);
+});
 app.listen(3000,()=>{
     console.log("Server is running")
 })

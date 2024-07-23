@@ -1,7 +1,6 @@
 import { useState } from "react"
 
-export function DropDownOrg() {
-    const [origin,setOrigin] = useState("SYN")
+export function DropDownOrg({origin,setOrigin}) {
 
     return <div>
                     Origin
@@ -20,8 +19,7 @@ setOrigin(e.target.value)
     </div>
 }
 
-export function DropDownDest() {
-    const [destination,setDestination] = useState("JFK")
+export function DropDownDest({destination,setDestination}) {
 
     return <div>
                     Destination
@@ -39,8 +37,7 @@ export function DropDownDest() {
     </div>
 }
 
-export function Cabin({fn}) {
-    const [cabin,setCabin] = useState("Economy");
+export function Cabin({cabin,setCabin,fn}) {
 
     return (
         <div className="flex flex-col w-48">
