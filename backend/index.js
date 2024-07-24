@@ -5,6 +5,10 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
+app.get("/", (req,res) =>{
+    res.send("SERVER IS RUNNING")
+})
+
 app.post("/", (req, res) => {
 
     const origin1 = req.body.origin;
