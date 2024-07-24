@@ -1,21 +1,24 @@
 import { useState } from "react";
 import { DropDownOrg,DropDownDest,Cabin } from "./DropDown"
-// import { Card } from "./Card"
+import { Card } from "./Card"
 import axios from "axios"
 
 export function Root() {
-    const [origin, setOrigin] = useState("SYN");
+    const [origin, setOrigin] = useState("JFK");
     const [destination, setDestination] = useState("JFK");
     const [cabin, setCabin] = useState("Economy");
+    const [fetchData,setFetchData] = useState(null)
 
     async function receive() {
-        await axios.post("http://localhost:3000",{
+        await axios.post("http://localhost:9000",{
             origin,
             destination,
             cabin  
         })
         .then((res) => {
-            console.log(res.data);
+             console.log(res.data);
+             setFetchData(res.data)
+             console.log(fetchData)
         });
     }
     
@@ -25,18 +28,21 @@ export function Root() {
             <DropDownOrg origin={origin} setOrigin={setOrigin} />
             <DropDownDest destination={destination} setDestination={setDestination} />
             <Cabin cabin={cabin} setCabin={setCabin} fn={receive}/>
-
-            {/* <Card partnerPrograms={"KLM"}
-            origin={"SYD"}
-            destination={"JFK"}
-            departureTimeFrom={"2024/07/09"}
-            departureTimeTo={"20241/0/07"}
-            min_business_miles={1}
-            min_business_tax={1}
-            min_economy_miles={53500}
-            min_economy_tax={189}
-            min_first_miles={1}
-            min_first_tax={1} /> */}
+            {fetchData && (
+                    
+            <Card 
+            partnerPrograms={fetchData.data2.data[0].partnerPrograms}
+            origin={fetchData.data1.origin}
+            destination={fetchData.data1.destination}
+            departureTimeFrom={fetchData.data1.departureTimeFrom}
+            departureTimeTo={fetchData.data1.departureTimeTo}
+            min_business_miles={ fetchData.data2.data[0].min_business_miles}
+            min_business_tax=  { fetchData.data2.data[0].min_business_tax}
+            min_economy_miles={fetchData.data2.data[0].min_economy_miles}
+            min_economy_tax={fetchData.data2.data[0].min_economy_tax}
+            min_first_miles={fetchData.data2.data[0].min_first_miles}
+            min_first_tax={fetchData.data2.data[0].min_first_tax} />
+            ) }
         </div>
     </div>
 }

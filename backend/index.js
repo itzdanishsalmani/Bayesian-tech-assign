@@ -13,7 +13,7 @@ app.post("/", (req,res)=>{
 
     console.log(origin1,destination1,cabin1)
 
-    const jsonData = {
+    const data1 = {
         origin: origin1,
         destination: destination1,
         partnerPrograms: [
@@ -28,26 +28,26 @@ app.post("/", (req,res)=>{
             'LifeMiles',
         ],
         stops: 2,
-        departureTimeFrom: '2024-07-09T00:00:00Z',
-        departureTimeTo: '2024-10-07T00:00:00Z',
+        departureTimeFrom: '2024-07-09',
+        departureTimeTo: '  2024-10-07',
         isOldData: false,
         limit: 302,
         offset: 0,
         cabinSelection: [
-            'Business',
+            cabin1,
         ],
         date: '2024-07-09T12:00:17.796Z',
     };
 
-    const response = {
+    const data2 = {
         data: [
             {
-                min_business_miles: null,
-                min_business_tax: null,
+                min_business_miles: "N/A",
+                min_business_tax: "N/A",
                 min_economy_miles: 53500,
                 min_economy_tax: 189,
-                min_first_miles: null,
-                min_first_tax: null,
+                min_first_miles: "N/A",
+                min_first_tax: "N/A",
                 partner_program: "KLM"
             },
             {
@@ -55,20 +55,20 @@ app.post("/", (req,res)=>{
                 min_business_tax: 177,
                 min_economy_miles: 55200,
                 min_economy_tax: 158,
-                min_first_miles: null,
-                min_first_tax: null,
+                min_first_miles: "N/A",
+                min_first_tax: "N/A",
                 partner_program: "Qantas"
             }
         ]
     };
 
     const combinedResponse = {
-        jsonData,
-        response
+        data1,
+        data2
     };
 
     res.json(combinedResponse);
 });
-app.listen(3000,()=>{
+app.listen(9000,()=>{
     console.log("Server is running")
 })
