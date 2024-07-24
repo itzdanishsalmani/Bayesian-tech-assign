@@ -1,9 +1,9 @@
 
 export function DropDownOrg({ origin, setOrigin }) {
 
-    return <div>
+    return <div className="p-2 rounded bg-black">
         Origin <br />
-        <select value={origin} className="bg-black border w-48  " onChange={(e) => {
+        <select value={origin} className="bg-black w-64" onChange={(e) => {
             setOrigin(e.target.value)
         }} >
             <option value="JFK">JFK</option>
@@ -20,9 +20,9 @@ export function DropDownOrg({ origin, setOrigin }) {
 
 export function DropDownDest({ destination, setDestination }) {
 
-    return <div>
+    return <div className="p-2 mt-4 rounded bg-black">
         Destination <br />
-        <select value={destination} className="bg-black border w-48 border-white" onChange={(e) => {
+        <select value={destination} className="bg-black w-64 " onChange={(e) => {
             setDestination(e.target.value)
         }} >
             <option value="JFK" >JFK</option>
@@ -39,16 +39,18 @@ export function DropDownDest({ destination, setDestination }) {
 export function Cabin({ cabin, setCabin, fn }) {
 
     return (
-        <div className="flex flex-col w-48">
-            Cabin selection<select className="bg-black border" value={cabin} onChange={(e) => {
+        <div className=" mt-4  w-64">
+            <div className="flex flex-col ">
+                <span className="p-2 bg-black rounded">Cabin selection  </span>
+            <select className="bg-black p-2 rounded" value={cabin} onChange={(e) => {
                 setCabin(e.target.value)
             }} >
                 <option value="Economy"  >Economy</option   >
                 <option value="Business"  >Business</option  >
                 <option value="First"  >First</option >
             </select>
-
-            <button className="bg-blue-500 mt-8 w-20 text-white p-2 rounded-lg" onClick={fn}>Search</button>
+            <button className="bg-blue-500 mt-4 w-20 text-white p-2 rounded-lg" onClick={fn}>Search</button>
+            </div>
         </div>
     )
 }
