@@ -9,7 +9,7 @@ app.get("/", (req,res) =>{
     res.send("SERVER IS RUNNING")
 })
 
-app.post("/", (req, res) => {
+app.post("/info", (req, res) => {
 
     const origin1 = req.body.origin;
     const destination1 = req.body.destination;

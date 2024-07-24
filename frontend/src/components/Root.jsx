@@ -32,7 +32,7 @@ export function Root() {
     };
 
     async function receive() {
-        await axios.post("/", {
+        await axios.post("/info", {
             origin,
             destination,
             cabin
